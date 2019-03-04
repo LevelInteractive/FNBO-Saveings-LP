@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>FNBO DIRECT - Saving Made Simple</title>
+    <title>Personal Online Savings Account with a Great Rate | FNBO Direct</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="company" content="FNBO Direct, First National Bank of Omaha, 1st National Bank Omaha" />
+    <meta name="product" content="high interest savings, no fee savings account, free bank account, online savings account" />
+    <meta name="keywords" content="FNBODirect, First National Bank of Omaha, high interest rate, best savings account, high yield savings account, online savings account, online savings rate">
+    <meta name="description" content="FNBO Direct offers high yield savings accounts with no fees. Open an account today and enjoy high interest rates on your savings plus a mobile banking app, automatic alerts and more!">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="scripts/jquery-ui.min.js"></script>
     <link href="scripts/jquery-ui.min.css" rel="stylesheet" />
@@ -48,25 +52,8 @@
         })(window, location, document, false, 1831);
     </script>
     <script>
-        var bDone = false;
-        var iPeriodDotL;
-        var iMonths = 45;
-        var iPerMonth = 2500;
-
-        $(document).ready(function () {
-            iPeriodDotL = ($("#PeriodDot").width() / 2);
-            var iLeft = $("#PeriodLine").offset().left;
-            iLeft = iLeft + 51 + iPeriodDotL;
-        })
-
-        $(window).resize(function () {
-            window.status = "w: " + window.innerWidth + ' h: ' + window.innerHeight;
-
-            //fixdots()
-        })
 
         function CheckWidest() {
-            console.log("CHECKING NOW!")
             var maxW = 0;
             var oMax;
             var all = document.getElementsByTagName("*"), i = 0, rect, docWidth = document.documentElement.offsetWidth;
@@ -76,18 +63,34 @@
                 if (rect.right > maxW && i != 16) {
                     maxW = rect.right;
                     oMax = all[i];
-                    console.log(oMax);
                 }
-                console.log(i);
             }
-            console.log(maxW);
-            console.log(oMax);
+            console.log(oMax)
         }
 
+        var bDone = false;
+        var iPeriodDotL;
+        var iMonths = 45;
+        var iPerMonth = 2500;
+
+        $(document).ready(function () {
+            iPeriodDotL = ($("#PeriodDot").width() / 2);
+            //var iLeft = $("#PeriodLine").offset().left;
+            //iLeft = iLeft + 51 + iPeriodDotL;
+            if ($(window).width() < 400)
+            {
+                //need to move the save for this long dot!
+            }
+        })
+
+        $(window).resize(function () {
+            window.status = "w: " + window.innerWidth + ' h: ' + window.innerHeight;
+
+            //fixdots()
+        })
 
         $(function () {
-
-            setTimeout("CheckWidest()", 2000);
+            //setTimeout("CheckWidest()", 2000);
             $("#StartingAmount").blur(function () { calcIt() });
             $("#StartingAmount").change(function () { calcIt() });
 
@@ -106,6 +109,7 @@
                 },
                 stop: function () { calcIt() }
             });
+
         });
 
         function DragAmount(event, ui) {
@@ -173,17 +177,8 @@
         }
         function Compound(startBalance, monthsToGrow, monthlyContribution, interestRate) {
             var monthlyRate = interestRate / 100 / 12;
-            console.log('startBalance= ' + startBalance)
-            console.log('monthlyRate= ' + monthlyRate)
-            console.log('monthsToGrow= ' + monthsToGrow)
-            console.log('monthlyContribution= ' + monthlyContribution)
-            console.log('interestRate= ' + interestRate)
             for (var i = 0; i < monthsToGrow; i++) {
-                if (i == 0) {
-                    console.log(i + ' startBalance= ' + startBalance + ' monthlyRate-' + monthlyRate + ' monthlyContribution-' + monthlyContribution)
-                }
                 startBalance = startBalance * (1 + monthlyRate) + monthlyContribution;
-
             }
             return Math.round(startBalance * 100) / 100;
         }
@@ -252,13 +247,6 @@
             width: 360px;
         }
 
-        .MessageCell {
-            width: 40%;
-            padding-right: 50px;
-            padding-left:20px;
-            line-height:1.2;
-            white-space:normal;
-        }
         .Clear {
             clear:both;
         }
@@ -340,6 +328,7 @@
         .SavingsTable {
             width: 80%;
             max-width: 1200px;
+            height:100%;
         }
 
             .SavingsTable td {
@@ -361,18 +350,37 @@
             #MoreStuff h1 {
                 font-size: 70px;
             }
-
-        .Icon {
-            width: 130px;
-            text-align: right !important;
-            padding-left: 34px;
-            padding-right: 4px;
+ .Icon {
+            width: 120px;
+            padding: 30px 0px 20px 50px;
+            /* text-align: right !important; */
+            /* padding-left: 34px; */
+            /* padding-right: 4px; */
+            /* height:33%; */
+            /* vertical-align:middle; */
         }
+
+        /* .Icon:first-child {  height:34% } */
+
+        .MessageCell {
+            /* width: 40%; */
+            padding-right: 20px;
+            padding-left:20px;
+            line-height:1.2;
+            white-space:normal;
+            height: 33%;
+            vertical-align:middle;
+        }
+        
+        
+          .MessageCell:first-child { 
+   height:34%
+} 
 
         .TRUST h2 {
             font-size: 60px;
             margin: 2px;
-            padding: 2px;
+            padding: 8px;
             margin-bottom: 10px;
         }
 
@@ -438,6 +446,7 @@
         }
 
         #PeriodDot {
+            cursor: pointer;
             position: absolute;
             font-size: 30px;
             padding: 0px;
@@ -575,7 +584,7 @@
             width: 100%;
             background-size: cover;
             background-position: 50%;
-            background-image: url(images/FNBO_LP_Savings.jpg);
+            background-image: url(images/FNBO-Direct-Savings.jpg);
             background-repeat: no-repeat;
             background-position: left top;
         }
@@ -624,11 +633,7 @@
                 padding-right: 0px;
             }
 
-            #MoreStuff {
-                width: auto;
-                max-width: 850px;
-                font-size: 14px;
-            }
+     
 
                 #MoreStuff h1 {
                     font-size: 24px;
@@ -695,8 +700,9 @@
             }
 
             #MoreStuff {
-                left: 10px;
-                top: 10px;
+                left: 20px;
+                top: 20px;
+                padding:20px;
             }
 
             .SavingsTable td {
@@ -705,9 +711,8 @@
             }
 
             .SavingsReadyDiv {
-                padding: 5px;
-                width: 99%;
                 border: 0px solid white;
+                width: 96%;
             }
 
             .SavingReadyCell {
@@ -720,7 +725,12 @@
                 height: 420px;
                 max-width: 400px;
                 width: 100%;
-                background-image: url(images/FNBO_LP_Savingsmobile.jpg);
+                background-image: url(images/FNBO-Direct-Savings-mobile.jpg);
+            }
+              #MoreStuff {
+                
+                top: 70px;
+                
             }
 
             .SavingReadyCell {
@@ -781,12 +791,11 @@
             #SavingMadeSimple {
                 width: 100%;
             }
-
-            .SavingsTable {
-                margin: 0px;
+             .SavingsTable, .IconTable {
+                margin: auto;
                 padding: 0px;
+                width:96%;
                 overflow: hidden;
-                width: 100% !important;
             }
 
             .SavingsReadyDiv {
@@ -827,27 +836,28 @@
 </head>
 <body>
     <input type="hidden" id="SavingsInterestRate" value="2.00" />
+    <input type="hidden" id="InterestDate" value="3/12/2019" />
     <div class="TopBar Divs">
         <table class="TopBarTable" style="height:100%;">
             <tr>
                 <td style="width:100%;text-align:left;padding-left:50px;height:100%;">
-                    <img id="FNBO_Logo" alt="First National Bank of Omaha - FNBO" style="margin-top:10px;margin-left:5px;" src="images/FNBO.png" />
+                    <img id="FNBO_Logo" alt="First National Bank of Omaha - FNBO" style="margin-top:10px;margin-left:5px;" src="images/FNBO-Direct.png" />
                 </td>
                 <td>
-                    <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" id="ApplyButton">Apply Now</a>
+                    <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" id="ApplyButton" target="_blank">Apply Now</a>
                 </td>
             </tr>
         </table>
     </div>
     <div id="SavingMadeSimple" style="border-top:1px solid white;" class="Divs">
-        <div style="position:relative;max-height:603px;width:100%;margin:auto;">
+        <div style="position:relative;max-height:603px;width:100%;margin:auto;vertical-align:center;">
             <div id="MoreStuff">
                 <h1 style="color:white;margin-bottom:5px;">
                     SAVING MADE SIMPLE<br />WITH
-                    <script>document.write($("#SavingsInterestRate").val())</script>%<a href="https://www.fnbo.com/" class="Orange" style="text-decoration:none;">*</a> ANNUAL <br />PERCENTAGE YIELD</h1>
+                    <script>document.write($("#SavingsInterestRate").val())</script>%<a href="https://www.fnbodirect.com/legal/online-savings-disclosure/index.html" class="Orange" style="text-decoration:none;">*</a> ANNUAL <br />PERCENTAGE YIELD</h1>
                 Access your money anytime, securely, with FNBO&nbsp;Direct.<br />
-                Great rates and convenient access- with no hidden fees.<br /><br />
-                <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" class="BlueApplyButton">Apply Now</a>
+                Great rates and convenient access - with no hidden fees.<br /><br />
+                <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" target="_blank" class="BlueApplyButton">Apply Now</a>
             </div>
             <div class="HeroImage"></div>
         </div>
@@ -856,27 +866,33 @@
     <div class="Divs SavingsTableDiv">
         <table class="SavingsTable" >
             <tr>
-                <td rowspan="4" class="SavingReadyCell">
+                <td class="SavingReadyCell">
                     <div class="SavingsReadyDiv">
                         <h2 id="SavingsThats" class="DarkBlue">Saving That's Ready When You Are.</h2>
                         Manage your finances online 24/7<br />with FNBO Direct.<br /><br /> Secure, powerful tools available anytime, anywhere. With no hidden fees! <br /><br />
                         <div id="ApplyButtonDiv" style="width:100%;text-align:center;"><br />
-                            <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" id="ApplyButtonBig">Apply Now</a>
+                            <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" id="ApplyButtonBig" target="_blank">Apply Now</a>
                             <br /><br />
                         </div>
                     </div>
                 </td>
-                <td class="Icon"><img alt="Safe Hands On Your Money" class="ImageInSavings" src="images/SafeHandsOnYourMoney.png" /></td>
-                <td class="MessageCell"><b>Manage</b> and organize your finances, check balances, and pay bills.</td>
-            </tr>
-            <tr>
-                <td class="Icon"><img alt="Online savings" class="ImageInSavings" src="images/FNBO_Savings_Online.png" /></td>
-                <td class="MessageCell" style="padding-bottom:10px;"><b>Online</b> banking that's ready when you are.  Log in on any device.</td>
-            </tr>
-            <tr>
-                <td class="Icon"><img  alt="Monitor your savings" class="ImageInSavings" src="images/FNBO_Monitoring_Your_Savings.png" /></td>
-                <td class="MessageCell"><b>Monitor</b> your spending, set account alerts, and download activity to <span class="Orange">Quicken&reg;</span> or <span class="Orange">QuickBooks&reg;</span></td>
-            </tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="Icon"><img alt="Safe Hands On Your Money" class="ImageInSavings" src="images/SafeHandsOnYourMoney.png" /></td>
+                            <td class="MessageCell"><b>Manage</b> and organize your finances, check balances, and pay bills.</td>
+                        </tr>
+                        <tr>
+                            <td class="Icon"><img alt="Online savings" class="ImageInSavings" src="images/FNBO-Direct-Savings-Online.png" /></td>
+                            <td class="MessageCell"><b>Online</b> banking at your fingertips.  Log in on any device.</td>
+                        </tr>
+                        <tr>
+                            <td class="Icon"><img alt="Monitor your savings" class="ImageInSavings" src="images/FNBO-Direct-Monitoring-Your-Savings.png" /></td>
+                            <td class="MessageCell"><b>Monitor</b> your spending, set account alerts, and download activity to Quicken&reg; or QuickBooks&reg;.</td>
+                        </tr>                        
+                    </table>
+                </td>
+                
         </table>
     </div>
     <br class="Clear" /><br />
@@ -909,16 +925,17 @@
                                     <hr id="PerMonthLine" class="DarkBlue" />
                                 </span>
                                 <br /><br />
-                                <span class="SpanBold">
+                                <span class="SpanBold" >
                                     Save For This Long
                                 </span>
-                                <span id="PeriodDot" class="DarkBlue">
-                                    &bull;<br />
-                                    <div class="triangle-isosceles top" style="border:solid 1px #00AEEF;width:180px;height:50px;background-color:white;padding:0px;margin:0px;">
-                                        <span style="font-size:16px;padding-left:10px;padding-right:4px;margin:0px;width:100%;" id="PeriodLength">3 YEARS 9 MONTHS</span>
-                                    </div>
+                                <span>
+                                    <span id="PeriodDot" class="DarkBlue" >&bull;<br />
+                                        <div class="triangle-isosceles top" style="border:solid 1px #00AEEF;width:180px;height:50px;background-color:white;padding:0px;margin:0px;">
+                                            <span style="font-size:16px;padding-left:10px;padding-right:4px;" id="PeriodLength">8 YEARS 2 MONTHS</span>
+                                        </div>
+                                    </span>
+                                    <hr id="PeriodLine" class="DarkBlue" />
                                 </span>
-                                <hr id="PeriodLine" class="DarkBlue" />
                                 <br />
                             </td>
                         </tr>
@@ -930,7 +947,8 @@
                         <span id="FinalSavings">$116,726.37</span>
                         <hr class="LightBlue" style="border:1px solid;width:220px" />
                         <br />
-                        <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" class="BlueApplyButton">Apply Now</a>
+                        <a href="https://apply.fnbodirect.com/jsp/oao/relc/cashedge/oao_index.jsp?homeid=99992085" class="BlueApplyButton" target="_blank">Apply Now</a>
+                        <br /><br />
                     </span>
                 </td>
             </tr>
@@ -948,30 +966,32 @@
                 <td>
                     <b>Highest in Customer Satisfaction with Retail Banking in the Midwest.</b>
                     <br />
-                    J.D.Power 2018 U.S. Retail Banking Satisfaction Study
+                    J.D. Power 2018 U.S. Retail Banking Satisfaction Study&dagger;
                 </td>
-                <td class="ImageCell"><img alt="160 years of putting our customers and their security first" src="images/FNBO_Customers_Are_Secure.png" /></td>
+                <td class="ImageCell"><img alt="160 years of putting our customers and their security first" src="images/FNBO-Direct-Customers-Are-Secure.png" /></td>
                 <td>
                     <b>Over 160 Years</b><br />Of putting our customers and their security first.
                 </td>
-                <td class="ImageCell"><img alt="Technology Safeguards" src="images/FNBO_Technology_Safeguards.png" /></td>
+                <td class="ImageCell"><img alt="Technology Safeguards" src="images/FNBO-Direct-Technology-Safeguards.png" /></td>
                 <td>
                     <b>Technology Safeguards</b><br />
-                    Encryption technology, Firewalls, User Authentication, Virus Protection
+                    Encryption Technology, Firewalls, User Authentication, Virus Protection
                 </td>
             </tr>
         </table>
     </div>
     <div class="Divs" style="background-color: #003455;">
         <div class="BoilerPlate">
-            &ast;FNBO Direct Online Savings Account Annual Percentage Yield is accurate as of 12/27/2018 and is subject to change after that date.  Rates may also change after the account is opened. Fees may reduce earnings.  Minimum deposit to open an account is $1.00.  Maximum principal deposit balance: $1,000,000.  See the <span class="Orange">Disclosures </span>for additional information and limitations.
-            <br /><br />
-            &dagger;The national APY for traditional savings is based on Statement National Average published in the 2017 passbook/statement 
-            savings <a class="Orange LongLink" style="text-decoration:none;" href="http://www.bankrate.com/brm/publ/passbk.asp?caret=2" target="_blank">study located on bankrate.com</a>.
-            <br /><br />
-            Copyright &copy; 2018 FNBO Direct, a division of First&nbsp;National&nbsp;Bank&nbsp;of&nbsp;Omaha.  All Rights Reserved. Deposit Accounts offered by <br />First&nbsp;National&nbsp;Bank&nbsp;of&nbsp;Omaha, Member FDIC.<br />
-            Deposits are insured to the maximum permitted by law. P.O. Box 3707, Omaha, NE 68103-0707.<br />
-        </div>
+            <div style="padding-left:15px;padding-right:15px">
+                &ast;FNBO Direct Online Savings Account Annual Percentage Yield is accurate as of
+                <script>document.write($("#InterestDate").val())</script> and is subject to change after that date.  Rates may also change after the account is opened. Fees may reduce earnings.  Minimum deposit to open an account is $1.00.  Maximum principal deposit balance: $1,000,000.  See the <a href="https://www.fnbodirect.com/legal/online-savings-disclosure/index.html" class="Orange" target="_blank">disclosures</a> for additional information and limitations.
+                <br /><br />
+                &dagger;For J.D. Power 2018 award information, visit <a class="Orange" href="http://jdpower.com/awards" target="_blank">jdpower.com/awards</a>.
+                <br /><br />
+                Copyright &copy; 2019 First National Bank of Omaha. All Rights Reserved. Deposit Accounts offered by First National Bank of Omaha, Member FDIC.
+                Deposits are insured to the maximum permitted by law. <br />P.O. Box 3707, Omaha, Nebraska, 68103-0707.<br /><br /><br /><br />
+            </div>
     </div>
+        </div>
 </body>
 </html>
